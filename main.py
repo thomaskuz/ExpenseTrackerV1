@@ -1,6 +1,7 @@
 import pandas as pd #voor de csv file
 import csv
 from datetime import datetime
+from data_entry import get_amount, get_category, get_date, get_description
 
 class CSV:
     CSV_FILE = "finance_data.csv" # Dit is een class variable
@@ -26,9 +27,15 @@ class CSV:
             writer.writerow(new_entry)
         print("entry added successfully")
 
-
+def add():
+    CSV.initialize_csv()
+    date = get_date("Enter the data of teh transaction (dd-mm-YY) or enter for today's data: ",allow_default=True)
+    amount = get_amount()
+    category = get_category()
+    description = get_description()
+    CSV.add_entry(date, amount, category, description)
 
 CSV.initialize_csv()
-CSV.add_entry("20-07-2020", "5", "food", "helloooooo")
+#CSV.add_entry("20-07-2020", "5", "food", "helloooooo")
 
 #https://youtu.be/Dn1EjhcQk64?t=916
